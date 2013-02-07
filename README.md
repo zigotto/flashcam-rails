@@ -23,3 +23,7 @@ To enable, add the following lines to your app/assets/javascripts/application.js
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 6. Enjoy a delicious cold beer and wait :)
+
+## Licence
+
+MIT License. Copyright 2013 Zigotto® - http://www.zigotto.com
