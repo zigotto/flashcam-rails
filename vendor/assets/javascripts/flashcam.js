@@ -9,7 +9,6 @@
 			// add flash to div
 			opts.id = this.id; // add id of plugin to the options structure
 			data = opts; // pass options to jquery internal data field to make them available to the outside world
-			data.path = decodeURIComponent(data.path); // convert URI back to normal string
 
 			$('#'+opts.id).html(opts.noFlashFound); // inject no flash found message
 
@@ -33,7 +32,7 @@
 				opts[key] = encodeURIComponent(opts[key]);
 			};
 
-			swfobject.embedSWF(data.path + 'flashcam.swf', opts.id, newWidth, newHeight, '11.4', false, opts, params);
+			swfobject.embedSWF('/assets/flashcam.swf', opts.id, newWidth, newHeight, '11.4', false, opts, params);
 		});
 	};
 
@@ -49,7 +48,6 @@
 	$.fn.flashcam.defaults = {
 		width:320,
 		height:240,
-		path:'',
 		noFlashFound:'<p>You need <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player 11.4</a> to use this software.<br/>Please click on the link to download the installer.</p>'
 	};
 })(jQuery);
