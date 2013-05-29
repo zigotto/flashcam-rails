@@ -9,15 +9,17 @@
 			// add flash to div
 			opts.id = this.id; // add id of plugin to the options structure
 			data = opts; // pass options to jquery internal data field to make them available to the outside world
+			data.path = decodeURIComponent(data.path); // convert URI back to normal string
 
 			$('#'+opts.id).html(opts.noFlashFound); // inject no flash found message
 
 			// forward incoming flash movie calls to outgoing functions
-			$.flashcam.FC_onError = data.onError;
-			$.flashcam.FC_onShow = data.onShow;
 			$.flashcam.FC_onConnect = data.onConnect;
 			$.flashcam.FC_onDisconnect = data.onDisconnect;
+			$.flashcam.FC_onError = data.onError;
+			$.flashcam.FC_onShow = data.onShow;
 			$.flashcam.FC_onWebcamReady = data.onWebcamReady;
+      $.flashcam.FC_onTimeLeftChange = data.onTimeLeftChange;
 
 			var newWidth = opts.width;
 			var newHeight = opts.height;
@@ -33,7 +35,7 @@
 				opts[key] = encodeURIComponent(opts[key]);
 			};
 
-			swfobject.embedSWF('/assets/flashcam.swf', opts.id, newWidth, newHeight, '11.4', false, opts, params);
+			swfobject.embedSWF(data.path + 'flashcam.swf', opts.id, newWidth, newHeight, '11.4', false, opts, params);
 		});
 	};
 
@@ -65,6 +67,7 @@
 	$.fn.flashcam.defaults = {
 		width:320,
 		height:240,
+		path:'',
 		noFlashFound:'<p>You need <a href="http://www.adobe.com/go/getflashplayer">Adobe Flash Player 11.4</a> to use this software.<br/>Please click on the link to download the installer.</p>'
 	};
 })(jQuery);
@@ -89,4 +92,8 @@ function FC_onDisconnect() {
 
 function FC_onWebcamReady() {
   $.flashcam.FC_onWebcamReady()
+}
+
+function FC_onTimeLeftChange() {
+	$.flashcam.FC_onTimeLeftChange();
 }
