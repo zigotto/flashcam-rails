@@ -16,6 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = Flashcam::Rails::VERSION
 
   gem.add_dependency "railties", "> 3.1.0"
-  gem.add_development_dependency "bundler", "~> 1.1.rc"
   gem.add_development_dependency "rake", "~> 0.9.2"
 end
